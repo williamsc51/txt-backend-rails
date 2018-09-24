@@ -12,6 +12,7 @@ set :repo_url, "git@github.com:williamsc51/txt-backend-rails.git"
 # set :deploy_to, "/var/www/my_app_name"
 set :user, "CourtneyMac"
 set :stages, %w(production staging)
+set :rvm_map_bins, %w{gem rake ruby rails bundle}
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
