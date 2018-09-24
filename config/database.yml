@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: txt_production
-  username: txt-backend-rails
+  username: CourtneyMac
   password: love
