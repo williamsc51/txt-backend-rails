@@ -21,6 +21,13 @@
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
+role :app, %w{CourtneyMac@73.159.242.120}
+role :web, %w{CourtneyMac@73.159.242.120}
+role :db, %w(CourtneyMac@73.159.242.120), :primary => true
+set :branch, "master"
+set :rails_env, "production"
+set :deploy_to, "/usr/local/var/rails"
+
 
 
 # Configuration
@@ -49,9 +56,9 @@
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
-# server "example.com",
-#   user: "user_name",
-#   roles: %w{web app},
+# server "73.159.242.120",
+#   user: "CourtneyMac",
+#   roles: %w{web app db}
 #   ssh_options: {
 #     user: "user_name", # overrides user setting above
 #     keys: %w(/home/user_name/.ssh/id_rsa),
