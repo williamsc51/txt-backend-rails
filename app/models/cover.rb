@@ -1,4 +1,4 @@
 class Cover < ApplicationRecord
 
-  mount_uploader :cover, ImageUploader
+    mount_uploader :cover, ImageUploader
 end
