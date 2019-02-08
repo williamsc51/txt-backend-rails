@@ -1,4 +1,4 @@
-class Api::V1::TokenController < ApplicationController
+class Api::V1::TokenController < ApiController
 
   def create
     user = User.where(email: params[:username]).first

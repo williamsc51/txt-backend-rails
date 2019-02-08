@@ -5,7 +5,3 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-# user1 = User.create(user_name: 'Karl', email: 'karl@txt.com')
-
-book1 = Book.create(title: 'Beppo', author: 'Rondey', isbn: 1960, price: 10.10, user_id: 11)
