@@ -1,5 +1,5 @@
 class Api::V1::BookResource < JSONAPI::Resource
-  attributes :title, :author, :isbn, :price, :description, :condition, :cover, :category, :user_id
+  attributes :title, :author, :isbn, :price, :description, :condition, :thumbnail, :category, :user_id, :created_at
   has_one :user
 
   def fetchable_fields

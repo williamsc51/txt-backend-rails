@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
   belongs_to :user
-  has_many :covers
+  has_many :thumbnails
 
 end
