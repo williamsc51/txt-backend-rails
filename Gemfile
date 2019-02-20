@@ -38,7 +38,7 @@ gem 'mini_magick'
 gem 'fog'
 gem 'active_model_serializers', '~> 0.10.0'
 gem "figaro"
-gem 'bootstrap'
+gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
