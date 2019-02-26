@@ -1,2 +1,28 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>ISBN</th>
+        <th>Price</th>
+        <th>Created Date</th>
+        <th>Action</th>
+    </tr>
+
+    <tr>
+        <td><%= @book.id %></td>
+        <td><%= @book.title %></td>
+        <td><%= @book.author %></td>
+        <td><%= @book.isbn %></td>
+        <td><%= @book.price %></td>
+        <td><%= @book.created_at.strftime("%m/%d/%y") %></td>
+        <td>
+            <%= link_to "Edit", edit_book_path(@book) %>
+        </td>
+    </tr>
+
+</table>
+
+<div>
+    <p> <%= @book.description %> </p>
+</div>

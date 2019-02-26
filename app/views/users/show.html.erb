@@ -10,6 +10,7 @@
         <th>Lasname</th>
         <th>Email</th>
         <th>Last Updated</th>
+        <th># Books Owned</th>
         <th>Action</th>
     </tr>
 
@@ -17,7 +18,8 @@
         <td><%= @user.fname %></td>
         <td><%= @user.lname %></td>
         <td><%= @user.email %></td>
-        <td><%= @user.updated_at.strftime("%F") %></td>
+        <td><%= @user.created_at.strftime("%F") %></td>
+        <td><%= @user.books.count %></td>
         <td>
             <%= link_to "Edit", edit_user_path %>
         </td>
