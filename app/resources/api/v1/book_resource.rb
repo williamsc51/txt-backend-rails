@@ -5,4 +5,6 @@ class Api::V1::BookResource < JSONAPI::Resource
   def fetchable_fields
       super - [:user_id]
     end
+
+    filter :id
 end
