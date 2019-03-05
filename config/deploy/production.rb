@@ -26,7 +26,7 @@ role :web, %w{CourtneyMac@73.47.229.11}
 role :db, %w(CourtneyMac@73.47.229.11), :primary => true
 set :branch, "master"
 set :rails_env, "production"
-set :deploy_to, "/usr/local/var/www"
+set :deploy_to, "/usr/local/var/rails"
 
 
 
