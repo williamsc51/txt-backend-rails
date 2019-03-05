@@ -7,16 +7,31 @@
             <th>Author</th>
             <th>ISBN</th>
             <th>Price</th>
-            <th>Cover</th>
-            <th>Action</th>
+            <th>Condition</th>
+            <th>Category</th>
         </tr>
         <tr>
             <td> <%= f.text_field(:title) %> </td>
             <td> <%= f.text_field(:author) %> </td>
             <td> <%= f.text_field(:isbn) %> </td>
             <td> <%= f.text_field(:price) %> </td>
-            <td> <%= f.file_field(:thumbnail) %> </td>
-            <td> <%= f.submit("Update") %> </td>
+            <td> <%= f.text_field(:condition) %> </td>
+            <td> <%= f.text_field(:category) %> </td>
         </tr>
     </table>
+
+    <table class="table">
+        <tr>
+            <th>Description</th>
+            <th>Cover</th>
+        </tr>
+        <tr>
+            <td><%= f.text_area(:description, cols: 50, rows: 5) %></td>
+            <td>
+                <img src=<%= @book.thumbnail %> /> 
+                <%= f.file_field(:thumbnail) %>
+            </td>
+        </tr>
+    </table>
+
 <% end %>

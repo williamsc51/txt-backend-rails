@@ -6,5 +6,5 @@ class Api::V1::BookResource < JSONAPI::Resource
       super - [:user_id]
     end
 
-    filter :id
+    filters :id, :category, :price
 end
