@@ -7,4 +7,13 @@ class Api::V1::BookResource < JSONAPI::Resource
     end
 
     filters :id, :category, :price
+    
+    filter :title, verify: ->(values, context) {
+        "%#{values[0].downcase}%"
+    }, apply: ->(records, value, _options) {
+      records.where("lower(books.title) LIKE ? ", value) 
+    }
+
+    # allow you to set limit
+    paginator :offset
 end

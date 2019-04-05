@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       jsonapi_resources :users
       resources :token
       resources :covers
+      resources :purchase
     end
   end
 end
