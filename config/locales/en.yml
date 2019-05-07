@@ -30,4 +30,18 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        email: "E-mail address"
+        fname: "Firstname"
+        lname: "Lastname"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "is required"
+            fname: 
+              blank: "cannot be empty"
+
