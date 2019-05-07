@@ -1,4 +1,6 @@
-class Cover < ApplicationRecord
+# frozen_string_literal: true
 
-    mount_uploader :cover, ImageUploader
+# Cover model
+class Cover < ApplicationRecord
+  mount_uploader :cover, ImageUploader
 end
