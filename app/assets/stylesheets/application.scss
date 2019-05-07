@@ -1,1 +1,16 @@
 @import "bootstrap";
+
+.field_with_errors {
+  padding: 1px;
+  position: inherit;
+  width: 100%;
+  background-color: red;
+  display: table;
+}
+
+.errors {
+    width: 100%;
+    background-color: #ff7b7b;
+    border: 1px solid #000000;
+    color: white;
+  }
