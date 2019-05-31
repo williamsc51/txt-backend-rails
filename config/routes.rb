@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
 
   root 'application#index'
+  get 'transaction', to: 'application#transaction'
+
   
+  mount Sidekiq::Web => '/sidekiq'
+
   resources :books do
     member do
       get :delete
     end
   end
 
-  resources :users do 
+  resources :users do
     member do
       get :delete
     end
