@@ -40,18 +40,17 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem "figaro"
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
+gem 'rubocop-performance'
+gem 'sidekiq'
+
+# PayPal SDK
+gem 'paypal-checkout-sdk'
 
 # Stripe integration
 gem 'stripe'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
-
-# Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -60,6 +59,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
+  gem 'better_errors'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -69,6 +70,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # Use Capistrano for deployment
   gem "capistrano", "~> 3.10"
   gem "capistrano-rails", "~> 1.3"
   gem "capistrano-passenger"
