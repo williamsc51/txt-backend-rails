@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   root 'application#index'
   get 'transaction', to: 'application#transaction'
-
   
   mount Sidekiq::Web => '/sidekiq'
 
@@ -27,7 +26,9 @@ Rails.application.routes.draw do
       jsonapi_resources :users
       resources :token
       resources :covers
-      resources :purchase
+      # resources :purchase
+      post 'purchase/create_order', to: 'purchase#create_order', as: :create_order
+      post 'purchase/capture_order', to: 'purchase#capture_order', as: :capture_order
     end
   end
 end
