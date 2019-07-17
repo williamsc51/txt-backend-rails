@@ -4,10 +4,10 @@ module PayPalClient
   class << self
 
     # Set up and return PayPal Ruby SDK environment with PayPal access credentials.
-    # This sample uses SandboxEnvironment. In production, use ProductionEnvironment.
+    # This sample uses SandboxEnvironment. In production, use LiveEnvironment.
     def environment
-      client_id = ENV['PAYPAL_CLIENT_ID'] || 'PAYPAL-CLIENT-ID'
-      client_secret = ENV['PAYPAL_CLIENT_SECRET'] || 'PAYPAL-CLIENT-SECRET'
+      client_id = ENV['PAYPAL_CLIENT_ID']
+      client_secret = ENV['PAYPAL_CLIENT_SECRET']
 
       PayPal::SandboxEnvironment.new(client_id, client_secret)
     end
