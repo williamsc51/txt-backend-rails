@@ -1,14 +1,30 @@
 # frozen_string_literal: true
  require_relative '../../../../config/initializers/paypal.rb'
+ require 'paypal-sdk-rest'
  include PayPalCheckoutSdk::Orders
-
 
 # API class
 class Api::V1::PurchaseController < ApiController
       
       def index
-        @payments = 'ManHimSelf'
-        render json: @payments
+        # @payments = 'ManHimSelf'
+        # render json: @payments
+        @res = PayPal::SDK::REST::DataTypes::Invoice.get_all(:total_count_required => true)
+        # render json: res
+        # headers = {
+        #   'Content-Type': 'application/json', 
+        #   'Authorization': 'Bearer A21AAEnh7thq87s2CzeYcq7i7AmkgiMppTSdOZKDXrXjuDVoXFbCzuJYPsYgoWQy-ypQUHxOLwdY3wByKZLEV-qDgsjHNMX1g'
+        # }
+        # inParams = {
+        #   'total_required': true
+        # }
+        # path = 'https://api.sandbox.paypal.com/v2/invoicing/invoices'
+
+        # res = HTTParty.get(path, headers: headers, query: inParams)
+
+        # render json: res
+
+        render html: res
       end
 
       def create_order debug=true
@@ -133,23 +149,6 @@ class Api::V1::PurchaseController < ApiController
         end
       end
 
-      def get_order(order_id)
-        request = OrdersGetRequest::new(order_id)
-        #3. Call PayPal to get the transaction
-        response = PayPalClient::client::execute(request)
-        #4. Save the transaction in your database. Implement logic to save transaction to your database for future reference.
-        puts "Status Code: " + response.status_code.to_s
-        puts "Status: " + response.result.status
-        puts "Order ID: " + response.result.id
-        puts "Intent: " + response.result.intent
-        puts "Links:"
-        for link in response.result.links
-        # You could also call this link.rel or link.href, but method is a reserved keyword for RUBY. Avoid calling link.method.
-        puts "\t#{link["rel"]}: #{link["href"]}\tCall Type: #{link["method"]}"
-        end
-        puts "Gross Amount: " + response.result.purchase_units[0].amount.currency_code + response.result.purchase_units[0].amount.value
-      end
-
       def capture_order debug=true
         order_id = params[:oID][:orderID]
         request = OrdersCaptureRequest::new(order_id)
@@ -175,12 +174,13 @@ class Api::V1::PurchaseController < ApiController
           puts "Capture Ids: "
           for purchase_unit in response.result.purchase_units
             for capture in purchase_unit.payments.captures
-              puts "\t #"
+              puts "\t #{capture.id}"
             end
           end
           puts "Buyer:"
           buyer = response.result.payer
           puts "\tEmail Address: #{buyer.email_address}\n\tName: #{buyer.name.given_name}"
+          puts PayPalClient::openstruct_to_hash(response.result).to_json
         end
 
             results = PayPalClient::openstruct_to_hash(response.result).to_json
