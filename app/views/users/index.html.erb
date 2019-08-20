@@ -1,10 +1,7 @@
-<% if !flash[:notice].blank? %>
-<div class="alert alert-success">
-    <%= flash[:notice] %>
-</div>
-<% end %>
-
-    <p> <%= link_to "Add new User", new_user_path %> </p>
+    <p> 
+        <% #TODO Use devise registration form %>
+        <%= link_to "Add new User", new_user_registration_path %> 
+    </p>
     <table class="table">
         <tr>
             <th>ID</th>

@@ -12,14 +12,10 @@ Rails.application.routes.draw do
       get :delete
     end
   end
+  
+  resources :users
 
-  resources :users do
-    member do
-      get :delete
-    end
-  end
-
-  devise_for :users
+  devise_for :users, path: '/'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do

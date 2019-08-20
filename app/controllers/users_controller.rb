@@ -8,22 +8,21 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def new
-    @user = User.new()
-  end
+  # def new
+  #   @user = User.new()
+  # end
 
-  def create
-    @user = User.new(user_params)
+  # def create
+  #   @user = User.new(user_params)
 
-    if @user.save
-      UserMailer.with(user: @user).welcome_email.deliver_now
-      flash[:notice] = "User successfully added"
-      redirect_to(users_path)
-    else
-      render('new')
-    end
-
-  end
+  #   if @user.save
+  #     UserMailer.with(user: @user).welcome_email.deliver_now
+  #     flash[:notice] = "User successfully added"
+  #     redirect_to(users_path)
+  #   else
+  #     render('new')
+  #   end
+  # end
 
   def edit
     @user = User.find(params[:id])
@@ -40,15 +39,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def delete
-  end
+  # def delete
+  # end
 
-  def destroy
-  end
+  # def destroy
+  # end
 
   private
 
-   def user_params
+  def user_params
     params.require(:user).permit(:fname, :lname, :email, :password)
   end
 
