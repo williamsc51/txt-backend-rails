@@ -23,7 +23,10 @@ Rails.application.routes.draw do
       jsonapi_resources :users
       resources :token
       resources :covers
-      resources :purchase
+      # resources :purchase
+      post 'purchase/create_order', to: 'purchase#create_order', as: :create_order
+      post 'purchase/capture_order', to: 'purchase#capture_order', as: :capture_order
+      get 'purchase', to: 'purchase#index'
     end
   end
 end
