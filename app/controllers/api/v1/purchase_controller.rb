@@ -13,7 +13,7 @@ class Api::V1::PurchaseController < ApiController
         # render json: res
         # headers = {
         #   'Content-Type': 'application/json', 
-        #   'Authorization': 'Bearer A21AAEnh7thq87s2CzeYcq7i7AmkgiMppTSdOZKDXrXjuDVoXFbCzuJYPsYgoWQy-ypQUHxOLwdY3wByKZLEV-qDgsjHNMX1g'
+        #   'Authorization': '#'
         # }
         # inParams = {
         #   'total_required': true
