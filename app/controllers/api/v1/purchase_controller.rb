@@ -7,118 +7,13 @@
 class Api::V1::PurchaseController < ApiController
       
       def index
-        # @payments = 'ManHimSelf'
-        # render json: @payments
-        @res = PayPal::SDK::REST::DataTypes::Invoice.get_all(:total_count_required => true)
-        # render json: res
-        # headers = {
-        #   'Content-Type': 'application/json', 
-        #   'Authorization': '#'
-        # }
-        # inParams = {
-        #   'total_required': true
-        # }
-        # path = 'https://api.sandbox.paypal.com/v2/invoicing/invoices'
-
-        # res = HTTParty.get(path, headers: headers, query: inParams)
-
-        # render json: res
-
-        render html: res
+        @purchase = Purchase.all
+        render json: @purchase
       end
 
       def create_order debug=true
-        body = {
-          intent: 'CAPTURE',
-          application_context: {
-            brand_name: 'EXAMPLE INC',
-            landing_page: 'BILLING',
-            shipping_preference: 'SET_PROVIDED_ADDRESS',
-            user_action: 'CONTINUE'
-          },
-          purchase_units: [
-            {
-              reference_id: 'PUHF',
-              description: 'Sporting Goods',
-    
-              custom_id: 'CUST-HighFashions',
-              soft_descriptor: 'HighFashions',
-              amount: {
-                currency_code: 'USD',
-                value: '230.00',
-                breakdown: {
-                  item_total: {
-                    currency_code: 'USD',
-                    value: '180.00'
-                  },
-                  shipping: {
-                    currency_code: 'USD',
-                    value: '30.00'
-                  },
-                  handling: {
-                    currency_code: 'USD',
-                    value: '10.00'
-                  },
-                  tax_total: {
-                    currency_code: 'USD',
-                    value: '20.00'
-                  },
-                  shipping_discount: {
-                    currency_code: 'USD',
-                    value: '10'
-                  }
-                }
-              },
-              items: [
-                {
-                  name: 'T-Shirt',
-                  description: 'Green XL',
-                  sku: 'sku01',
-                  unit_amount: {
-                    currency_code: 'USD',
-                    value: '90.00'
-                  },
-                  tax: {
-                    currency_code: 'USD',
-                    value: '10.00'
-                  },
-                  quantity: '1',
-                  category: 'PHYSICAL_GOODS'
-                },
-                {
-                  name: 'Shoes',
-                  description: 'Running, Size 10.5',
-                  sku: 'sku02',
-                  unit_amount: {
-                    currency_code: 'USD',
-                    value: '45.00'
-                  },
-                  tax: {
-                    currency_code: 'USD',
-                    value: '5.00'
-                  },
-                  quantity: '2',
-                  category: 'PHYSICAL_GOODS'
-                }
-              ],
-              shipping: {
-                method: 'United States Postal Service',
-                address: {
-                  name: {
-                    full_name: 'John',
-                    surname: 'Doe'
-                  },
-                  address_line_1: '123 Townsend St',
-                  address_line_2: 'Floor 6',
-                  admin_area_2: 'San Francisco',
-                  admin_area_1: 'CA',
-                  postal_code: '94107',
-                  country_code: 'US'
-                }
-              }
-            }
-          ]
-        }
+
+        body = purchase_params.to_hash
     
         request = OrdersCreateRequest::new
         request.prefer("return=representation")
@@ -157,6 +52,12 @@ class Api::V1::PurchaseController < ApiController
         begin
           response = PayPalClient::client.execute(request)
           #4. Save the capture ID to your database. Implement logic to save capture to your database for future reference.
+          user = 1
+          ppID = response.result.id
+          @purchase = Purchase.new
+          @purchase.paypay_orderID = ppID
+          @purchase.user_id = user
+          @purchase.save
         rescue => e
           puts e.result
           #5. Handle errors, if any.
@@ -190,7 +91,7 @@ class Api::V1::PurchaseController < ApiController
       private
 
       def purchase_params
-        params.require(:purchase).permit(:intent, :value)
+        params.require(:purchase).permit(:intent, :purchase_units =>[:amount=> [:currency_code,:value]])
       end
 end
 
