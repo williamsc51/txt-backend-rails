@@ -1,4 +1,4 @@
-class Api::V1::CoversController < ApiController
+class Api::V1::CoversController < ApplicationController
   before_action :set_cover, only: [:show, :update, :destroy]
 
   # GET /covers
