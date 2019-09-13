@@ -4,7 +4,8 @@
  include PayPalCheckoutSdk::Orders
 
 # API class
-class Api::V1::PurchaseController < ApiController
+class Api::V1::PurchaseController < ApplicationController
+  skip_before_action :verify_authenticity_token
       
       def index
         @purchase = Purchase.all
