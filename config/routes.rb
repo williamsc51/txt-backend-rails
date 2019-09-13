@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       jsonapi_resources :books
       jsonapi_resources :users
-      jsonapi_resources :carts
+      jsonapi_resource :cart
       resources :token
       resources :covers
       # resources :purchase
