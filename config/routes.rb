@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       jsonapi_resources :books
       jsonapi_resources :users
       jsonapi_resource :cart
-      jsonapi_resource :books_carts
+      jsonapi_resources :books_carts
       resources :token
       resources :covers
       # resources :purchase
