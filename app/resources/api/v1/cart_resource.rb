@@ -1,5 +1,5 @@
 class Api::V1::CartResource < JSONAPI::Resource
-    attributes :user_id
+    attributes :user_id, :books_count
     has_many :books
     has_one :user
     
