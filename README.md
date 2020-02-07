@@ -25,11 +25,11 @@ Prerequisits:
     3. Git (it's already on a Mac, but the Homebrew version is more up to date)
     4. XCode command line tools
   
-  brew install postgresql
-  brew install postgis
-  brew install imagemagick
-  brew install git
-  xcode-select --install
+   - brew install postgresql
+   - brew install postgis
+   - brew install imagemagick
+   - brew install git
+   - xcode-select --install
   
   * Clone txt-backend-rails git directory and cd to it:
       - https://github.com/williamsc51/txt-backend-rails.git
