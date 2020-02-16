@@ -17,5 +17,5 @@ class Api::V1::BookResource < JSONAPI::Resource
     }    
 
     # allow you to set limit
-    paginator :offset
+    # paginator :offset
 end
