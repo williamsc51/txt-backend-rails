@@ -80,6 +80,7 @@ group :development do
   gem "capistrano-rails", "~> 1.3"
   gem "capistrano-passenger"
   gem "capistrano-rvm"
+  gem 'annotate'
 end
 
 group :test do
