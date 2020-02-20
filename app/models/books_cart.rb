@@ -11,6 +11,8 @@
 #
 
 class BooksCart < ApplicationRecord
+  validates :book_id, :cart_id, presence: true
+  
   belongs_to :book
   belongs_to :cart, counter_cache: :books_count
 end

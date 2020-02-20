@@ -17,6 +17,8 @@
 #
 
 class Book < ApplicationRecord
+  validates :title, :author, :price, presence: true
+
   belongs_to :user
   has_and_belongs_to_many :cart
   has_many :thumbnails
