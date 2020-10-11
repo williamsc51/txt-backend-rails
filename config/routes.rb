@@ -19,10 +19,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
-      jsonapi_resources :books
-      jsonapi_resources :users
-      jsonapi_resource :cart
-      jsonapi_resources :books_carts
+      resources :books
+      resources :users
+      resource :cart
+      resources :books_carts
       resources :token
       resources :covers
       # resources :purchase

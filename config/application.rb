@@ -27,5 +27,6 @@ module TxtBackendRails
     end
 
     config.active_job.queue_adapter = :sidekiq
+    config.generators.javascript_engine = :js
   end
 end
