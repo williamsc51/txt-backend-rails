@@ -12,9 +12,6 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
-gem 'devise'
-gem 'simple_token_authentication', '~> 1.0'
-
 # Use SCSS for stylesheets
 gem 'sassc'
 
@@ -33,7 +30,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'redis', '~> 4.0'
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use carrierwave for image processing
 gem 'carrierwave-aws'
@@ -42,7 +39,6 @@ gem 'mini_magick'
 gem "figaro"
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
-gem 'rubocop-performance'
 
 # Use sidekiq for background job processing
 gem 'sidekiq'
@@ -65,6 +61,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'capybara', '~> 2.5'
+  gem "rubocop", "0.72.0"
+  gem "rubocop-performance"
+  gem "rubocop-rails", "~> 2.5.2"
 end
 
 group :development do
@@ -90,6 +89,3 @@ group :test do
   gem 'database_cleaner', '~> 1.5'
   gem 'faker', '~> 1.6.1'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

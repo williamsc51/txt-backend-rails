@@ -21,13 +21,10 @@
 
 # User model
 class User < ApplicationRecord
+  has_secure_password
   validates :fname, :lname, presence: true, length: { minimum: 2 }
   validates :email, uniqueness: { case_sensitive: false }, presence: true
-  acts_as_token_authenticatable
-  # Include default devise modules. Others available are:
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+
   has_many :books
   has_one :cart
   has_many :purchases
