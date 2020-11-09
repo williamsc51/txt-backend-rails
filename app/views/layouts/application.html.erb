@@ -30,22 +30,9 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Vendor</a>
         </li>
-        <li class="nav-item">
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link"%>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link"%>
-        </li>
       </ul>
     </div>
   </nav>
-
-  <div>
-    <% if current_user %>
-      <%= current_user.email%>
-    <% end %>
-  </div>
-
 
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
