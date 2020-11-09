@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   root 'application#index'
   get 'transaction', to: 'application#transaction'
 
-  
   mount Sidekiq::Web => '/sidekiq'
 
   resources :books do
@@ -12,8 +11,9 @@ Rails.application.routes.draw do
       get :delete
     end
   end
-  
+
   resources :users
+  resources :sessions, only: [:create]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: "json" } do
@@ -24,6 +24,8 @@ Rails.application.routes.draw do
       resources :books_carts
       resources :token
       resources :covers
+      resource :profile, only: [:show]
+      # get 'profile', action: :profile, controller: 'sessions'
       # resources :purchase
       post 'purchase/create_order', to: 'purchase#create_order', as: :create_order
       post 'purchase/capture_order', to: 'purchase#capture_order', as: :capture_order
