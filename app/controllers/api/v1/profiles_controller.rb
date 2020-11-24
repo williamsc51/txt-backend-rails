@@ -1,12 +1,10 @@
 class Api::V1::ProfilesController < ApplicationController
 
+  before_action :check_logged_in
+
   def show
-    if current_user
-      @user = current_user
-      render json: @user
-    else
-      render json: {status: :unauthorized}
-    end
+    @user = current_user
+    render json: @user
   end
 
 end
