@@ -6,11 +6,24 @@ class ApplicationController < ActionController::Base
   include Authentication
   include ApiFilters
 
-  def check_logged_in
-    return if !!current_user
+  before_action :current_cart
 
-    render json: {status: :unauthorized}
+  def check_logged_in
+    return if logged_in?
+
+    render json: { status: :unauthorized, logged_in: "You are not logged in" }
     false
+  end
+
+  def current_cart
+    if logged_in?
+      @cart = @current_user.cart
+    elsif session[:cart]
+      @cart = Cart.find(session[:cart])
+    else
+      @cart = Cart.create
+      session[:cart] = @cart.id
+    end
   end
 
   protected
@@ -18,5 +31,4 @@ class ApplicationController < ActionController::Base
   def json_request?
     request.format.json?
   end
-
 end

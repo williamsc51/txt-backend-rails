@@ -1,3 +1,20 @@
-class Api::V1::BooksCartsController < ApplicationController
+# frozen_string_literal: true
 
+class Api::V1::BooksCartsController < ApplicationController
+  def create
+    @cart_item = BooksCart.new(books_carts_params)
+
+    if @cart_item.save
+      # TODO: consider just returning message (item added to cart)
+      render json: @cart_item
+    else
+      render json: { errors: @@cart_item.errors }
+    end
+  end
+
+  private
+
+  def books_carts_params
+    params.permit(:cart_id, :book_id)
+  end
 end
