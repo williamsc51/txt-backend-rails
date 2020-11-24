@@ -26,3 +26,7 @@
 <div>
     <p> <%= @book.description %> </p>
 </div>
+
+<div>
+    <%= image_tag @book.image.variant(resize: "100x100") %>
+</div>

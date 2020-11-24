@@ -1,5 +1,5 @@
 class Api::V1::BooksController < ApplicationController
-  
+
   before_action :check_logged_in, only: [:create, :update]
   before_action :is_owner?, only: [:update]
 
@@ -9,7 +9,7 @@ class Api::V1::BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params_attributes.merge({user: current_user}))
+    @book = Book.new(book_params.merge({user: current_user}))
 
     if @book.save
       render json: @book, status: :created
@@ -26,7 +26,7 @@ class Api::V1::BooksController < ApplicationController
   def update
     @book = book
 
-    if @book.update(book_params_attributes)
+    if @book.update(book_params)
       render json: @book
     else
       render json: @book.errors
@@ -43,16 +43,12 @@ class Api::V1::BooksController < ApplicationController
     if current_user.id == book.user_id
       true
     else
-      render json: {message: "Not yours"}
+      render json: { status: :unauthorized }
       false
     end
   end
 
   def book_params
-    params.require(:data).permit(:type, attributes: %i[title author isbn price description condition thumbnail category])
-  end
-
-  def book_params_attributes
-    book_params[:attributes] || {}
+    params.permit(:title, :author, :isbn, :price, :description, :condition, :image, :category)
   end
 end

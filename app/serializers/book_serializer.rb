@@ -17,6 +17,14 @@
 #
 
 class BookSerializer < ActiveModel::Serializer
-  attributes :id, :title, :author, :isbn, :price, :description, :condition, :thumbnail, :category
+
+  attributes :id, :title, :author, :isbn, :price, :description, :condition, :category, :image
+
   belongs_to :user
+
+  def image
+    if object.image.attached?
+      object.image.service_url
+    end
+  end
 end

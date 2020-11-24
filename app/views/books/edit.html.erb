@@ -28,10 +28,13 @@
         <tr>
             <td><%= f.text_area(:description, cols: 50, rows: 5) %></td>
             <td>
-                <img src=<%= @book.thumbnail %> /> 
-                <%= f.file_field(:thumbnail) %>
+                <%= image_tag @book.image %>
+                <%= f.file_field(:image) %>
             </td>
         </tr>
     </table>
+    <div class="col-xs-12">
+        <%= f.submit "Update Book", class:"btn btn-primary" %>
+    </div>
 
 <% end %>

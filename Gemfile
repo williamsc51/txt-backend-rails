@@ -32,10 +32,11 @@ gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# Use carrierwave for image processing
-gem 'carrierwave-aws'
+# Image Processing / File Uploads / ActiveStorage
+gem "active_storage_validations"
+gem "aws-sdk-s3"
 gem 'mini_magick'
-
+gem "image_processing"
 gem "figaro"
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'

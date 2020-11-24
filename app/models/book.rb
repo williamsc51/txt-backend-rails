@@ -21,7 +21,7 @@ class Book < ApplicationRecord
 
   belongs_to :user
   has_and_belongs_to_many :cart
-  has_many :thumbnails
+  has_one_attached :image
 
   scope :cart, lambda {|query| joins(:cart).where("cart_id = ?", "#{query}")}
 
