@@ -33,6 +33,9 @@ gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Authentication and Authorization
+gem 'doorkeeper'
+
 # Image Processing / File Uploads / ActiveStorage
 gem "active_storage_validations"
 gem "aws-sdk-s3"
