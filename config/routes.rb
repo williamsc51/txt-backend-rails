@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   require 'sidekiq/web'
 
   root 'application#index'
@@ -13,7 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :sessions, only: [:create]
+  get 'logout', to: 'sessions#destroy'
+  resources :sessions, except: [:edit, :index, :show]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: "json" } do
