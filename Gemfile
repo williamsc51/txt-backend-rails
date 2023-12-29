@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-ruby '2.7.2'
+ruby '3.0.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.0'
+gem 'rails', '~> 7.0.4.3'
 
 # Use Puma as the app server
 gem 'puma', '~> 4.3'
@@ -70,9 +70,10 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'capybara', '~> 2.5'
-  gem "rubocop", "0.72.0"
+  gem "rubocop", "1.5.2"
   gem "rubocop-performance"
   gem "rubocop-rails", "~> 2.5.2"
+  gem 'webdrivers', '~> 5.0', require: false
 end
 
 group :development do
@@ -92,9 +93,7 @@ end
 
 group :test do
   gem 'selenium-webdriver'
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
   gem 'shoulda-matchers', '~> 3.0', require: false
   gem 'database_cleaner', '~> 1.5'
-  gem 'faker', '~> 1.6.1'
+  gem 'faker', '~> 3.2'
 end
