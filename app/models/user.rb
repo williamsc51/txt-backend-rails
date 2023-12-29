@@ -24,8 +24,4 @@ class User < ApplicationRecord
   has_many :books
   has_one :cart
   has_many :purchases
-
-  def as_json(_options={})
-    super(except: [:password_digest])
-  end
 end
