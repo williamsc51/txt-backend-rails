@@ -73,6 +73,7 @@ group :development, :test do
   gem "rubocop", "0.72.0"
   gem "rubocop-performance"
   gem "rubocop-rails", "~> 2.5.2"
+  gem 'webdrivers', '~> 5.0', require: false
 end
 
 group :development do
