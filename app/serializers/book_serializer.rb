@@ -24,7 +24,10 @@ class BookSerializer < ActiveModel::Serializer
 
   def image
     if object.image.attached?
-      object.image.service_url
+      if Rails.env.development?
+        "http://localhost:3000#{Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true)}"
+      end
+      #TODO add production path when deployed
     end
   end
 end

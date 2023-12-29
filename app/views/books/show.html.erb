@@ -28,5 +28,5 @@
 </div>
 
 <div>
-    <%= image_tag @book.image.variant(resize: "100x100") %>
+    <%= image_tag url_for(@book.image.variant(resize: "100x100")) %>
 </div>
