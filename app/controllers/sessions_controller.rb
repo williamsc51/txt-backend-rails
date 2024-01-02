@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
           redirect_to redirect_path
         }
         format.json {
-          render json: { status: :created, logged_in: true, user: user}
+          render json: { status: :created, user: UserSerializer.new(user).serializable_hash.except(:books)}
         }
       else
         format.html {
