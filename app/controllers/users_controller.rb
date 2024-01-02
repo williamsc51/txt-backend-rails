@@ -9,6 +9,7 @@ class UsersController < BaseController
   end
 
   def new
+    @user = User.new
   end
 
   def create
