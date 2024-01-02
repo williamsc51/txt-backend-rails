@@ -21,7 +21,6 @@ class User < ApplicationRecord
   validates :fname, :lname, presence: true, length: { minimum: 2 }
   validates :email, uniqueness: { case_sensitive: false }, presence: true
 
-  has_many :books
   has_one :cart
   has_many :purchases
 end

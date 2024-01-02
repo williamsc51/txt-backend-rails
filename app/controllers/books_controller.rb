@@ -12,7 +12,6 @@ class BooksController <  BaseController
 
   def create
     @book = Book.new(book_params)
-    @book.user_id = 5
     if @book.save
       redirect_to(books_path)
     else

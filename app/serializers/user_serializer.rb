@@ -16,5 +16,4 @@
 
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :fname, :lname
-  has_many :books
 end

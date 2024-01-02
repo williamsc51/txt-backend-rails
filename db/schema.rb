@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_29_152256) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_02_212047) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,13 +50,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_152256) do
     t.string "description"
     t.string "condition"
     t.string "category"
-    t.bigint "user_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["author"], name: "index_books_on_author"
     t.index ["isbn"], name: "index_books_on_isbn"
     t.index ["title"], name: "index_books_on_title"
-    t.index ["user_id"], name: "index_books_on_user_id"
   end
 
   create_table "books_carts", force: :cascade do |t|
@@ -139,7 +137,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_152256) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "books", "users"
   add_foreign_key "books_carts", "books"
   add_foreign_key "books_carts", "carts"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
