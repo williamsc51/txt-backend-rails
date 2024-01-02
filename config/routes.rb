@@ -24,7 +24,6 @@ Rails.application.routes.draw do
       resource :cart
       resources :books_carts
       resources :token
-      resources :covers
       resource :profile, only: [:show]
       # get 'profile', action: :profile, controller: 'sessions'
       # resources :purchase
