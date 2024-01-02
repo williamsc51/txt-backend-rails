@@ -6,24 +6,8 @@ class ApplicationController < ActionController::Base
   include Authentication
   include ApiFilters
 
-  before_action :current_cart
-
-  def check_logged_in
-    return if logged_in?
-
-    render json: { status: :unauthorized, logged_in: "You are not logged in" }
-    false
-  end
-
-  def current_cart
-    if logged_in?
-      @cart = @current_user.cart
-    elsif session[:cart]
-      @cart = Cart.find(session[:cart])
-    else
-      @cart = Cart.create
-      session[:cart] = @cart.id
-    end
+  def store_requested_path
+    session[:requested_path] = request.fullpath unless current_user
   end
 
   protected

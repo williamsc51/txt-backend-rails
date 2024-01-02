@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
 
   root 'application#index'
-  get 'transaction', to: 'application#transaction'
 
   mount Sidekiq::Web => '/sidekiq'
 
@@ -15,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :users
   get 'logout', to: 'sessions#destroy'
-  resources :sessions, except: [:edit, :index, :show]
+  resource :session, except: [:edit, :index, :show]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: "json" } do

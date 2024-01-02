@@ -1,8 +1,6 @@
 class SessionsController < ApplicationController
 
-  # layout :none
   def new
-    session[:return_to] = params[:return_to] if params[:return_to]
   end
 
   def create
@@ -12,22 +10,21 @@ class SessionsController < ApplicationController
       if user
         session[:user_id] = user.id
         format.html {
-          if session[:return_to]
-            redirect_to session[:return_to]
-          else
-            redirect_to root_path
-          end
+          redirect_path = session[:requested_path] || books_path
+          session[:requested_path] = nil  # Clear the stored path after redirection
+          flash[:notice] = "You have successfuly login"
+          redirect_to redirect_path
         }
         format.json {
           render json: { status: :created, logged_in: true, user: user}
         }
       else
         format.html {
-          flash[:error] = "Login attempt failed"
-          render :new
+          flash[:alert] = "Login attempt failed"
+          render :new, status: :forbidden
         }
         format.json {
-          { status: 401, message: "Invalid Credentials" }
+          render json: { status: 401, message: "Invalid Credentials" }
         }
       end
     end

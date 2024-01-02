@@ -1,4 +1,4 @@
-<%= form_with url: sessions_path, method: :post do |form|  %>
+<%= form_with model: @user, local: true, url: session_path do |form|  %>
   <%= form.label :email, "Email" %>
   <%= form.text_field :email %>
   <%= form.label :password, "password" %>
