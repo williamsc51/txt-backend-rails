@@ -34,6 +34,7 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     respond_to do |format|
       format.html{
+        flash[:notice] = "You are logged out"
         redirect_to root_path
       }
       format.json {
