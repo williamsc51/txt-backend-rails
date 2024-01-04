@@ -1,18 +1,21 @@
 # frozen_string_literal: true
 
 class Api::V1::BooksCartsController < ApplicationController
-  def index
-    cart = current_cart
-    @books = BooksCart.where("cart_id = #{cart.id}")
-    render json: @books
-  end
-
   def create
-    @cart_item = BooksCart.new(books_carts_params)
+    book = Book.find_by(id: params[:book_id])
+    current_cart = @current_cart
+
+    if current_cart.books.include?(book)
+      @cart_item = current_cart.books_carts.find_by(book_id: book.id)
+      @cart_item.quantity += 1
+    else
+      @cart_item = BooksCart.new
+      @cart_item.cart = current_cart
+      @cart_item.book = book
+    end
 
     if @cart_item.save
-      # TODO: consider just returning message (item added to cart)
-      render json: @cart_item
+      render json: { message: "Item added to cart" }, status: :created
     else
       render json: { errors: @cart_item.errors }
     end
@@ -21,6 +24,26 @@ class Api::V1::BooksCartsController < ApplicationController
   def destroy
     @cart_item = BooksCart.find(params[:id])
     @cart_item.destroy
+
+    render json: { message: "Item removed from cart" }
+  end
+
+  def add_quantity
+    @cart_item = BooksCart.find(params[:id])
+    @cart_item.quantity += 1
+    @cart_item.save
+    
+    render json: { message: "Quantity added to cart" }
+  end
+  
+  def reduce_quantity
+    @cart_item = BooksCart.find(params[:id])
+    if @cart_item.quantity > 1
+      @cart_item.quantity -= 1
+    end
+    @cart_item.save
+    
+    render json: { message: "Quantity reduced in cart" }
   end
 
   private

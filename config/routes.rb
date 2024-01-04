@@ -21,8 +21,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :books, only: [:index, :show]
       resources :users
-      resource :cart
-      resources :books_carts
+      resource :cart, only: [:show, :destroy]
+      post 'books_carts' => "books_carts#create"
+      delete 'books_carts/:id' => "books_carts#destroy"
+      post 'books_carts/:id/add' => "books_carts#add_quantity"
+      post 'books_carts/:id/remove' => "books_carts#reduce_quantity"
       resources :token
       resource :profile, only: [:show]
       # get 'profile', action: :profile, controller: 'sessions'
