@@ -11,6 +11,15 @@
 
 class Cart < ApplicationRecord
   belongs_to :user, optional: true
-  has_and_belongs_to_many :books
+  has_many :books_carts, dependent: :destroy
+  has_many :books, through: :books_carts
 
+  def sub_total
+    sum = 0
+    self.books_carts.each do |cart_item|
+      sum += cart_item.total_price
+    end
+    
+    sum
+  end
 end

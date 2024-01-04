@@ -14,5 +14,9 @@ class BooksCart < ApplicationRecord
   validates :book_id, :cart_id, presence: true
 
   belongs_to :book
-  belongs_to :cart, counter_cache: :books_count
+  belongs_to :cart
+
+  def total_price
+    self.quantity * self.book.price
+  end
 end

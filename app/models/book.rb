@@ -18,13 +18,6 @@
 class Book < ApplicationRecord
   validates :title, :author, :price, presence: true
 
-  has_and_belongs_to_many :cart
+  has_many :books_carts, dependent: :destroy
   has_one_attached :image
-
-  scope :cart, lambda {|query| joins(:cart).where("cart_id = ?", "#{query}")}
-
-  def self.total
-    sum(:price)
-  end
-
 end
