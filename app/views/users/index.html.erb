@@ -7,7 +7,6 @@
         <th>Lasname</th>
         <th>Email</th>
         <th>Created</th>
-        <th># Books Owned</th>
         <th>Action</th>
     </tr>
     <% @users.each do |user| %>
@@ -17,7 +16,6 @@
         <td><%= user.lname %></td>
         <td><%= user.email %></td>
         <td><%= user.created_at.strftime("%F") %></td>
-        <td><%= user.books.count %></td>
         <td>
             <%= link_to "Show", user_path(user) %>
             |
