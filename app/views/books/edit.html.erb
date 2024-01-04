@@ -28,7 +28,9 @@
         <tr>
             <td><%= f.text_area(:description, cols: 50, rows: 5) %></td>
             <td>
-                <%= image_tag @book.image %>
+                <% if @book.image.attached? %>
+                    <%= image_tag @book.image.variant(resize: "500x500") %>
+                <% end %>
                 <%= f.file_field(:image) %>
             </td>
         </tr>

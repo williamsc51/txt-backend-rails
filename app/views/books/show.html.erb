@@ -27,6 +27,8 @@
     <p> <%= @book.description %> </p>
 </div>
 
+<% if @book.image.attached? %>
 <div>
-    <%= image_tag url_for(@book.image.variant(resize: "100x100")) %>
+    <%= image_tag url_for(@book.image.variant(resize: "500x500")) %>
 </div>
+<% end %>
