@@ -10,6 +10,16 @@
 #
 
 class CartSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :books_count
-  has_many :books
+  attributes :id, :user_id, :sub_total, :data
+
+  def data
+    object.books_carts.map do |cart_item|
+      {
+        cart_item_id: cart_item.id,
+        book: cart_item.book,
+        quantity: cart_item.quantity,
+        total: cart_item.total_price
+      }
+    end
+  end
 end
