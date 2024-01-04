@@ -1,33 +1,48 @@
 class Api::V1::UsersController < ApplicationController
-    before_action :set_user, only: [:show, :update, :destroy]
-
-    def index
-      @users = User.all
-  
-      render json: @users
-    end
+    before_action :check_login, only: [:show, :update]
+    before_action :set_user, except: [:create]
     
     def create
-      @users = Cover.new(user_params_attributes)
+      user = User.new(user_params_attributes)
 
-      if @user.save
-        render json: @users, status: :created
+      if user.save
+        render json: user, status: :created
       else
-        render json: @users.errors, status: :unprocessable_entity
+        render json:  {error_messages: user.errors}, status: :unprocessable_entity
+      end
+    end
+
+    def update
+      if @user.update(user_params_attributes)
+        render json: @user
+      else
+        render json: {error_messages: @user.errors}, status: :unprocessable_entity
       end
     end
 
     def show
-      render json: @users
+      return render json: @user if @user
+
+      render json: {message: "not found"}, status: 404
     end
 
 private
+
+    def check_login
+      if logged_in? && current_user.id == params[:id].to_i
+        true
+      else
+        render json: {message: "unauthorized"}, status: 401
+        false
+      end
+    end
+
     def set_user
-      @users = User.find(params[:id])
+      @user = User.find_by(id: params[:id])
     end
 
     def user_params
-      params.require(:data).permit(:type, attributes: [:fname, :lname, :email])
+      params.require(:data).permit(:type, attributes: [:fname, :lname, :email, :password])
     end
 
     def user_params_attributes
